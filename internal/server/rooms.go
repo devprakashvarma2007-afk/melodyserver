@@ -224,9 +224,9 @@ func (s *Server) handleRejectSuggestion(c *Client, payload []byte) {
 }
 
 func (s *Server) handleCreateRoom(c *Client, payload []byte) {
-	if !canHostClient(c) {
-		c.sendError(s.logger, "host_not_allowed", "Only allowlisted clients can host rooms")
-		return
+	if !canHostClient(newHostClient) {
+    c.sendError(s.logger, "host_not_allowed", "Only allowlisted clients can host rooms")
+    return
 	}
 
 	var p CreateRoomPayload
@@ -760,9 +760,9 @@ func (s *Server) handleTransferHost(c *Client, payload []byte) {
 		c.sendError(s.logger, "user_not_found", "Target user not found in room")
 		return
 	}
-	if !canHostClient(newHostClient) {
-		c.sendError(s.logger, "host_not_allowed", "Only allowlisted clients can host rooms")
-		return
+if !canHostClient(newHostClient) {
+    c.sendError(s.logger, "host_not_allowed", "Only allowlisted clients can host rooms")
+    return
 	}
 
 	// Transfer host role
